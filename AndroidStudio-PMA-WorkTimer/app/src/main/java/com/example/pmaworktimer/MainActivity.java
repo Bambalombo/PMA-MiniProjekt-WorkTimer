@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Linus";
     private Chronometer chronometer;
 
+    public long pauseVariable = 25;
     private long timeSincePaused;
     private long timerStart;
     private long timeSpentWorking;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             baseValue = (SystemClock.elapsedRealtime()-(SystemClock.elapsedRealtime() - chronometer.getBase())*-1);
             timeSpentWorking = SystemClock.elapsedRealtime() - chronometer.getBase();
 
-            chronometer.setBase(baseValue-(timeSpentWorking*3)/4);
+            chronometer.setBase(baseValue-(timeSpentWorking*(100-pauseVariable))/100);
             isWorking = false;
             isRunning = false;
             startPauseButton.setText("Start Work");
@@ -82,6 +83,5 @@ public class MainActivity extends AppCompatActivity {
         timeSincePaused = 0;
         isRunning = false;
         startPauseButton.setText("Start Work");
-
     }
 }
