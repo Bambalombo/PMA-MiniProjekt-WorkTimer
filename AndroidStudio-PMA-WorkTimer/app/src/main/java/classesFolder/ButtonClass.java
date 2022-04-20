@@ -1,9 +1,16 @@
+package classesFolder;
+
+public class ButtonClass {
+    
+}
+
+/*
+
 package com.example.pmaworktimer;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -30,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRunning;  // whether or not the timer is running
 
     Button startPauseButton;
-    Button switchToFixedTimerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         chronometer = findViewById(R.id.chronometer);
         startPauseButton = findViewById(R.id.button_start_pause);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -81,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
         isRunning = false;
         startPauseButton.setText("Start Work");
     }
-
-    public void switchToFixedTimer(View view) {
-        Intent intent = new Intent(this, FixedTimerActivity.class);
-        startActivity(intent);
-    }
 }
+
+ */
