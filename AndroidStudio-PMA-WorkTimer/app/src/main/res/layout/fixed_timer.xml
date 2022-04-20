@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FixedTimerActivity">
 
-    <Chronometer
-        android:id="@+id/chronometer"
+    <TextView
+        android:id="@+id/countdown_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:text="25:00"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,32 +23,20 @@
         android:id="@+id/button_start_pause"
         android:layout_width="265dp"
         android:layout_height="103dp"
-        android:onClick="startChronometer"
+        android:onClick="startPauseTimer"
         android:text="Start Work"
-        app:layout_constraintBottom_toTopOf="@+id/button_reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.979" />
-
-    <Button
-        android:id="@+id/button_reset"
-        android:layout_width="265dp"
-        android:layout_height="103dp"
-        android:onClick="resetChronometer"
-        android:text="Reset Timer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.59" />
 
     <Button
-        android:id="@+id/swithActivity"
+        android:id="@+id/switchToFlexButton"
         android:layout_width="297dp"
         android:layout_height="53dp"
-        android:onClick="switchToFixedTimer"
-        android:text="Switch to Countdown Timer"
+        android:onClick="switchToFlexibleTimer"
+        android:text="Switch to Flexible Timer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

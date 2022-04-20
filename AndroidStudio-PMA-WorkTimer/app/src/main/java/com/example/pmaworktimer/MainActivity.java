@@ -3,6 +3,7 @@ package com.example.pmaworktimer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -27,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private long baseValue;
 
     private boolean isRunning;  // whether or not the timer is running
-    private boolean isWorking;  // whether or not the user is working or taking a break
 
     Button startPauseButton;
+    Button switchToFixedTimerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +44,13 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void startChronometer(View v) {
         if (!isRunning) {
-
             chronometer.setCountDown(false);
             chronometer.setBase(SystemClock.elapsedRealtime() - timeSincePaused);
             chronometer.start();
             timerStart = chronometer.getBase();
             Log.d(TAG, "startChronometer: "+timerStart);
             isRunning = true;
-            isWorking = true;
             startPauseButton.setText("Start Break");
-
         } else {
             Log.d(TAG, "startChronometer: "+ (SystemClock.elapsedRealtime() - chronometer.getBase()));
             chronometer.setCountDown(true);
@@ -61,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             timeSpentWorking = SystemClock.elapsedRealtime() - chronometer.getBase();
 
             chronometer.setBase(baseValue-(timeSpentWorking*(100-pauseVariable))/100);
-            isWorking = false;
             isRunning = false;
             startPauseButton.setText("Start Work");
             timeSincePaused = 0;
@@ -83,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
         timeSincePaused = 0;
         isRunning = false;
         startPauseButton.setText("Start Work");
+    }
+
+    public void switchToFixedTimer(View view) {
+        Intent intent = new Intent(this, FixedTimerActivity.class);
+        startActivity(intent);
     }
 }
