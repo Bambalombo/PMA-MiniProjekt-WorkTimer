@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Linus";
     private Chronometer chronometer;
 
-    public long pauseVariable = 25;
+    public long pauseVariable = 50;
     private long timeSincePaused;
     private long timerStart;
     private long timeSpentWorking;
@@ -39,6 +39,25 @@ public class MainActivity extends AppCompatActivity {
 
         chronometer = findViewById(R.id.chronometer);
         startPauseButton = findViewById(R.id.button_start_pause);
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
+        {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChronometerTick(Chronometer chronometer)
+            {
+                Log.d(TAG, "onChronometerTick: " + (chronometer.getBase() - SystemClock.elapsedRealtime()));
+                long currentTime = chronometer.getBase()-SystemClock.elapsedRealtime();
+                if(chronometer.isCountDown() && currentTime < 0) {
+
+                    chronometer.setBase(SystemClock.elapsedRealtime());
+                    chronometer.stop();
+                    timeSincePaused = 0;
+                    isRunning = false;
+                    startPauseButton.setText("Start Work");
+                }
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -58,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
             baseValue = (SystemClock.elapsedRealtime()-(SystemClock.elapsedRealtime() - chronometer.getBase())*-1);
             timeSpentWorking = SystemClock.elapsedRealtime() - chronometer.getBase();
 
-            chronometer.setBase(baseValue-(timeSpentWorking*(100-pauseVariable))/100);
+            chronometer.setBase(baseValue-(timeSpentWorking*(100-pauseVariable))/100+1000);
             isRunning = false;
-            startPauseButton.setText("Start Work");
+            startPauseButton.setText("Skip Break");
             timeSincePaused = 0;
         }
     }
