@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     public long pauseVariable = 25;
     private long timeSincePaused;
-    private long timerStart;
     private long timeSpentWorking;
     private long baseValue;
 
@@ -135,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
     private void startTimer() {
         chronometer.setBase(SystemClock.elapsedRealtime() - timeSincePaused);
         chronometer.start();
-        timerStart = chronometer.getBase();
         isRunning = true;
         startPauseButton.setText("Start Break");
         statusText.setText("Working");
