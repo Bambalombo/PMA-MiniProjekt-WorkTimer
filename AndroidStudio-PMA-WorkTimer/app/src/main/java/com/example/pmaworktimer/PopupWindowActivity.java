@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class PopupWindowActivity extends AppCompatActivity {
 
-    Button resumeButton;
-    Button breakButton;
-    TextView windowText;
+    private Button resumeButton;
+    private Button breakButton;
+    private TextView windowText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class PopupWindowActivity extends AppCompatActivity {
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent();
+                setResult(0,intent);
                 finish();
             }
         });
@@ -44,9 +46,9 @@ public class PopupWindowActivity extends AppCompatActivity {
         breakButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 setResult(1,intent);
-                finish();//finishing activity
+                finish();
             }
         });
     }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -93,15 +94,11 @@ public class FixedTimerActivity extends AppCompatActivity {
     public void resetTimer() {
         if(countDownTimer!=null) {
             countDownTimer.cancel();
-            countDownTimer.start();
+            timeLeftInMilliseconds = newTimerLength;
+            countDownText.setText("25:00");
             timerIsRunning = false;
             startTimerButton.setText("Start Work");
             statusText.setText("");
-
-            new Timer().schedule(new TimerTask() { // calls cancel method after 100 ms delay
-                @Override
-                public void run() { countDownTimer.cancel(); }
-            }, 10);
         }
     }
 
