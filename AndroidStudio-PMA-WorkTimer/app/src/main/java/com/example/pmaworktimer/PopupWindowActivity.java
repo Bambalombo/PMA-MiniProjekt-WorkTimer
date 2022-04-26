@@ -13,7 +13,6 @@ public class PopupWindowActivity extends AppCompatActivity {
 
     Button resumeButton;
     Button breakButton;
-
     TextView windowText;
 
     @Override
