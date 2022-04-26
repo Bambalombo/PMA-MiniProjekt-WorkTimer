@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent.values[0] > 0.1) {
                     if (isRunning) {
-                        Log.d("Linus","Den driller");
                         Intent intent = new Intent(MainActivity.this, PopupWindowActivity.class);
                         startActivityForResult(intent,1);
                     }

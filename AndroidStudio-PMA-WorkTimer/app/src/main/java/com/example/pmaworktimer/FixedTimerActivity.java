@@ -89,7 +89,7 @@ public class FixedTimerActivity extends AppCompatActivity {
             statusText.setText("Paused");
         }
     }
-
+// I was here
     public void resetTimer() {
         if(countDownTimer!=null) {
             countDownTimer.cancel();
