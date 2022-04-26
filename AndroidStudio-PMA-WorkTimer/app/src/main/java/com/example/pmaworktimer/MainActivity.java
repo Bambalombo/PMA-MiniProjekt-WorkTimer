@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
     private Chronometer chronometer;
 
-    public long pauseVariable = 25;
+    private long pauseVariable = 25;
     private long timeSincePaused;
     private long timeSpentWorking;
     private long baseValue;
 
     private boolean isRunning;  // whether or not the timer is running
 
-    Button startPauseButton;
-    TextView timerName;
-    TextView statusText;
+    private Button startPauseButton;
+    private TextView timerName;
+    private TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
