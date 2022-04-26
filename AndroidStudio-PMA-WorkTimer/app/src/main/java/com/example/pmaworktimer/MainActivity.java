@@ -34,15 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     public long pauseVariable = 25;
     private long timeSincePaused;
-    private long timerStart;
     private long timeSpentWorking;
     private long baseValue;
 
     private boolean isRunning;  // whether or not the timer is running
 
-    Button startPauseButton;
-    TextView timerName;
-    TextView statusText;
+    private Button startPauseButton;
+    private TextView timerName;
+    private TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +59,10 @@ public class MainActivity extends AppCompatActivity {
         statusText = findViewById(R.id.status_text_flextimer);
         statusText.setText("");
 
-        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener()
-        {
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onChronometerTick(Chronometer chronometer)
-            {
+            public void onChronometerTick(Chronometer chronometer) {
                 long currentTime = chronometer.getBase()-SystemClock.elapsedRealtime();
                 if(chronometer.isCountDown() && currentTime < 0) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
@@ -134,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
     private void startTimer() {
         chronometer.setBase(SystemClock.elapsedRealtime() - timeSincePaused);
         chronometer.start();
-        timerStart = chronometer.getBase();
         isRunning = true;
         startPauseButton.setText("Start Break");
         statusText.setText("Working");
