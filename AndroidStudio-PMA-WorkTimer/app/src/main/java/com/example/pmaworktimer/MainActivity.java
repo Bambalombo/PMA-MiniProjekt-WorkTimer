@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Chronometer chronometer;
 
-    public long pauseVariable = 25;
+    private byte pauseVariable = 25;
     private long timeSincePaused;
     private long timeSpentWorking;
     private long baseValue;
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChronometerTick(Chronometer chronometer) {
+                Log.d("Time passed: ",SystemClock.elapsedRealtime()+"");
                 long currentTime = chronometer.getBase()-SystemClock.elapsedRealtime();
                 if(chronometer.isCountDown() && currentTime < 0) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
@@ -121,14 +122,14 @@ public class MainActivity extends AppCompatActivity {
     public void startChronometer(View v) {
         if (!isRunning) {
             chronometer.setCountDown(false);
-            startTimer();
+            startWork();
         } else {
             chronometer.setCountDown(true);
-            pauseChronometer();
+            startBreak();
         }
     }
 
-    private void startTimer() {
+    private void startWork() {
         chronometer.setBase(SystemClock.elapsedRealtime() - timeSincePaused);
         chronometer.start();
         isRunning = true;
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         statusText.setText("Working");
     }
 
-    public void pauseChronometer() {
+    private void startBreak() {
         baseValue = (SystemClock.elapsedRealtime()-(SystemClock.elapsedRealtime() - chronometer.getBase())*-1);
         timeSpentWorking = SystemClock.elapsedRealtime() - chronometer.getBase();
 
